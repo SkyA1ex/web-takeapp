@@ -12,32 +12,33 @@ var gulp         = require('gulp'), // Подключаем Gulp
     liveServer   = require("live-server"); // live-server
 
 var live_server_params = {
-    port: 8082, // Set the server port. Defaults to 8080.
-    host: "serv.me", // Set the address to bind to. Defaults to 0.0.0.0 or process.env.IP.
-    root: "./build", // Set root directory that's being served. Defaults to cwd.
-    open: true, // When false, it won't load your browser by default.
-    file: "index.html", // When set, serve this file for every 404 (useful for single-page applications)
-    wait: 50, // Waits for all changes, before reloading. Defaults to 0 sec.
-    logLevel: 2, // 0 = errors only, 1 = some, 2 = lots
+  port: 8082, // Set the server port. Defaults to 8080.
+  host: "127.0.0.1", // Set the address to bind to. Defaults to 0.0.0.0 or process.env.IP.
+  root: "./build", // Set root directory that's being served. Defaults to cwd.
+  open: true, // When false, it won't load your browser by default.
+  file: "index.html", // When set, serve this file for every 404 (useful for single-page applications)
+  wait: 50, // Waits for all changes, before reloading. Defaults to 0 sec.
+  logLevel: 2, // 0 = errors only, 1 = some, 2 = lots
 };
 
 
 
 gulp.task('watch', function() {
-    gulp.watch('app/css/**/*.styl', ['build_styles']);
-    gulp.watch('app/*.html', ['build_html']);
-    gulp.watch('app/js/**/*.js', ['build_js']);
-    gulp.watch('app/img/**/*', ['build_images']);
+  gulp.watch('app/css/**/*.css', ['build_styles']);
+  gulp.watch('app/styl/**/*.styl', ['build_styles']);
+  gulp.watch('app/*.html', ['build_html']);
+  gulp.watch('app/js/**/*.js', ['build_js']);
+  gulp.watch('app/img/**/*', ['build_images']);
 
-    liveServer.start(live_server_params);
+  liveServer.start(live_server_params);
 });
 
 gulp.task('clean', function() {
-    return del.sync('build');
+  return del.sync('build');
 });
 
 gulp.task('clear', function () {
-    return cache.clearAll();
+  return cache.clearAll();
 })
 
 
@@ -45,39 +46,48 @@ gulp.task('clear', function () {
 // build tasks
 
 gulp.task('build_styles', function() {
-      gulp.src('app/css/**/*.css')
-          .pipe(gulp.dest('build/css'))
+  del.sync('build/css');
 
-      gulp.src('app/styl/**/*.styl')
-          .pipe(stylus())
-          .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-          .pipe(gulp.dest('build/css'))
+  gulp.src('app/css/**/*.css')
+      .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
+      .pipe(gulp.dest('build/css'))
+
+  gulp.src('app/styl/**/*.styl')
+      .pipe(stylus())
+      .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
+      .pipe(gulp.dest('build/css'))
 });
 
 gulp.task('build_fonts', function() {
-      return gulp.src('app/fonts/**/*')
-          .pipe(gulp.dest('build/fonts'))
+  del.sync('build/fonts')
+
+  gulp.src('app/fonts/**/*')
+      .pipe(gulp.dest('build/fonts'))
 });
 
 gulp.task('build_images', function() {
-    return gulp.src('app/img/**/*')
-        .pipe(cache(imagemin({
-            interlaced: true,
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()]
-        })))
-        .pipe(gulp.dest('build/img'));
+  gulp.src('app/img/**/*')
+      .pipe(cache(imagemin({
+          interlaced: true,
+          progressive: true,
+          svgoPlugins: [{removeViewBox: false}],
+          use: [pngquant()]
+      })))
+      .pipe(gulp.dest('build/img'));
 });
 
 gulp.task('build_js', function() {
-      return gulp.src('app/js/**/*')
-          .pipe(gulp.dest('build/js'))
+  del.sync('build/js')
+
+  gulp.src('app/js/**/*')
+      .pipe(gulp.dest('build/js'))
 });
 
 gulp.task('build_html', function() {
-      return gulp.src('app/*.html')
-          .pipe(gulp.dest('build'));
+  del.sync('build/html')
+
+  gulp.src('app/*.html')
+      .pipe(gulp.dest('build'));
 });
 
 // main build task
