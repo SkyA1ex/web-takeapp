@@ -13,6 +13,10 @@
     font-style normal
     src url(../fonts/OpenSans-Semibold.ttf)
 
+ @font-face
+    font-family OpenSansBold
+    font-style normal
+    src url(../fonts/OpenSans-Bold.ttf)
 
 
 body
@@ -25,17 +29,73 @@ div
   padding 0px
 
 
+
+
 .layout_header
+  display none
   background-color #CFE7E7
 
+
+.layout_main
+  display none
+
+
+.layout_more_power
+  height 875px
+  background-image url(/img/car.jpg)
+  background-position center
+
+  .gradient
+    position absolute
+    height 100%
+    width 700px
+    background linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))
+
+  .content
+    display block
+    margin 0px
+    margin-right auto
+    margin-left auto
+    max-width 1300px
+    padding-left 50px
+    padding-right 50px
+
+    .info
+      overflow visible
+      position relative
+      top 455px
+      color #FFFFFF
+      max-width 500px
+
+      .title
+        font 60px OpenSansLight
+        line-height 1.2
+
+      .text
+        font 13px OpenSansRegular
+        margin-top 30px
+        margin-right 50px
+        line-height 1.7
+
+      .options
+        display inline-block
+        margin-top 25px
+        font 14px OpenSansBold
+
+        &:hover
+          cursor pointer
+
+
+
 .layout_reasons
+  position relative
   background-color #82ca9c
   color #FFFFFF
   padding-top 120px
   padding-bottom 160px
 
   .brand_label
-    display block
+    // display none // TODO: fix
     position absolute
     transform rotate(270deg)
     font 12px OpenSansSemibold
@@ -81,6 +141,14 @@ div
           margin-top 25px
           font 14px OpenSans
 
+
+
+.layout_plan
+  display none
+
+
+.layout_footer
+  display none
 
 
 
