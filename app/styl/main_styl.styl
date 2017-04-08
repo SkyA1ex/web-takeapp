@@ -1,10 +1,95 @@
+@font-face
+   font-family OpenSansLight
+   font-style normal
+   src url(../fonts/OpenSans-Light.ttf)
 
-.no
-  font: 20px/1.4 "Lucida Grande", Arial, sans-serif
-  background: black
-  color: #cca
+ @font-face
+    font-family OpenSansRegular
+    font-style normal
+    src url(../fonts/OpenSans-Regular.ttf)
 
-form input
-  padding: 5px
-  border: 1px solid
-  border-radius: 20px
+ @font-face
+    font-family OpenSansSemibold
+    font-style normal
+    src url(../fonts/OpenSans-Semibold.ttf)
+
+
+
+body
+  margin 0px
+  .layout_reasons
+    background-color #82ca9c
+
+div
+  font 20px/1.4 "Lucida Grande", Arial, sans-serif
+  padding 0px
+
+
+.layout_header
+  background-color #CFE7E7
+
+.layout_reasons
+  background-color #82ca9c
+  color #FFFFFF
+  padding-top 120px
+  padding-bottom 160px
+
+  .brand_label
+    display block
+    position absolute
+    transform rotate(270deg)
+    font 12px OpenSansSemibold
+    top 250px
+    left 33px
+    overflow hidden
+
+    @media screen and (max-width: 1500px)
+      display none
+
+  .content
+    display block
+    margin 0px
+    margin-right auto
+    margin-left auto
+    max-width 1300px
+    padding-left 50px
+    padding-right 50px
+
+    .title
+      display block
+      font 35px OpenSansLight
+
+    .list
+      display flex
+      flex-flow row wrap
+      justify-content space-between
+      align-items flex-start
+      margin-top 50px
+
+      .item
+        flex-basis auto // default
+        flex-grow 1
+        flex-basis 360px
+        max-width 360px
+        margin-bottom 30px
+
+        .header
+          font 13px OpenSansSemibold
+
+
+        .text
+          margin-top 25px
+          font 14px OpenSans
+
+
+
+
+
+
+
+
+
+
+
+
+

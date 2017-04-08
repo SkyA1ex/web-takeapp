@@ -29,6 +29,7 @@ gulp.task('watch', function() {
   gulp.watch('app/*.html', ['build_html']);
   gulp.watch('app/js/**/*.js', ['build_js']);
   gulp.watch('app/img/**/*', ['build_images']);
+  gulp.watch('app/fonts/**/*', ['build_fonts']);
 
   liveServer.start(live_server_params);
 });
@@ -92,7 +93,7 @@ gulp.task('build_html', function() {
 
 // main build task
 
-gulp.task('build', ['clean', 'build_images', 'build_styles', 'build_js', 'build_html']);
+gulp.task('build', ['clean', 'build_images', 'build_fonts', 'build_styles', 'build_js', 'build_html']);
 
 
 
