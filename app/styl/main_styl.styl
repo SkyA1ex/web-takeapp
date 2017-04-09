@@ -23,22 +23,81 @@
     font-style normal
     src url(../fonts/OpenSans-ExtraBold.ttf)
 
+ @font-face
+    font-family OpenSansItalic
+    font-style normal
+    src url(../fonts/OpenSans-Italic.ttf)
+
 
 body
   margin 0px
-  .layout_reasons
-    background-color #82ca9c
-
-div
-  font 20px/1.4 "Lucida Grande", Arial, sans-serif
   padding 0px
 
 
+.brand-label
+  position absolute
+  transform rotate(270deg)
+  font 12px OpenSansSemibold
+  left 33px
+  overflow hidden
+
+  @media screen and (max-width: 1500px)
+    display none
 
 
-.layout_header
-  display none
-  background-color #CFE7E7
+.layout-header
+  height 950px
+  background url(/img/man.jpg) no-repeat center
+
+  .brand-label
+    top 505px
+    color white
+
+  .brand-label_perfect
+    left 50px
+    top 585px
+    color white
+    font 12px OpenSansLight
+
+  .content
+    display relative
+    margin 0px
+    margin-right auto
+    margin-left auto
+    max-width 1300px
+    padding-left 50px
+    padding-right 50px
+
+    .app_label
+      display flex
+      flex-flow row nowrap
+      align-items center
+      padding-top 55px
+
+      .app_logo_container
+        height 40px
+        width 40px
+
+        .app_logo
+          max-width 100%
+          max-height 100%
+
+      .app_name
+        font 22px OpenSansItalic
+        color white
+        padding-left 10px
+
+    .title
+      font 60px OpenSansLight
+      color white
+      padding-top 395px
+
+    .text
+      max-width 450px
+      font 13px OpenSansRegular
+      color white
+      margin-top 20px
+      line-height 1.5
 
 
 .layout_main
@@ -48,8 +107,7 @@ div
 .layout_more_power
   // display none // TODO: remove
   height 875px
-  background-image url(/img/car.jpg)
-  background-position center
+  background url(/img/car.jpg) no-repeat center
 
   .gradient
     position absolute
@@ -101,16 +159,9 @@ div
   padding-top 120px
   padding-bottom 160px
 
-  .brand_label
-    position absolute
-    transform rotate(270deg)
-    font 12px OpenSansSemibold
+  .brand-label
     top 165px
-    left 33px
-    overflow hidden
-
-    @media screen and (max-width: 1500px)
-      display none
+    color white
 
   .content
     display block
@@ -233,16 +284,8 @@ div
   padding-bottom 140px
 
   .brand-label
-    position absolute
-    transform rotate(270deg)
-    font 12px OpenSansSemibold
     color #b8b8b8
     top 145px
-    left 33px
-    overflow hidden
-
-    @media screen and (max-width: 1500px)
-      display none
 
   .content
     display flex
