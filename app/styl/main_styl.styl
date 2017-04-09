@@ -18,6 +18,11 @@
     font-style normal
     src url(../fonts/OpenSans-Bold.ttf)
 
+ @font-face
+    font-family OpenSansExtraBold
+    font-style normal
+    src url(../fonts/OpenSans-ExtraBold.ttf)
+
 
 body
   margin 0px
@@ -95,11 +100,10 @@ div
   padding-bottom 160px
 
   .brand_label
-    // display none // TODO: fix
     position absolute
     transform rotate(270deg)
     font 12px OpenSansSemibold
-    top 250px
+    top 165px
     left 33px
     overflow hidden
 
@@ -108,7 +112,6 @@ div
 
   .content
     display block
-    margin 0px
     margin-right auto
     margin-left auto
     max-width 1300px
@@ -143,17 +146,157 @@ div
 
 
 
-.layout_plan
-  display none
+.card-plan
+  display inline-block
+  max-width 500px
+  padding-top 50px
+  padding-bottom 55px
+  padding-left 50px
+  padding-right 50px
+
+  &:hover
+    background white
+    box-shadow 0 0 62px rgba(0, 0, 0, 0.05)
+
+  .card-plan__label
+    display inline-block
+    border-radius 5px
+    color white
+    font 11px OpenSansExtraBold
+    padding-top 4px
+    padding-bottom 4px
+    padding-left 16px
+    padding-right 16px
+
+    &_legacy
+      background-color #E1E1E1
+
+    &_most-popular
+      background-color #BB8CBD
+
+  .card-plan__name
+    font 30px OpenSansLight
+    color #2e3b4e
+    margin-top 10px
+
+  .card-plan__description
+    font 14px OpenSansRegular
+    color #8297a7
+    margin-top 25px
+    padding-right 50px
+
+    @media screen and (max-width: 1299px)
+      padding-right 0px
+
+  .card-plan__buy-now
+    display inline-block
+    border-radius 3px
+    background-color #82ca9c
+    font 13px OpenSansBold
+    color white
+    margin-top 30px
+    padding-top 16px
+    padding-bottom 16px
+    padding-left 26px
+    padding-right 26px
+    text-transform uppercase
+
+    &:hover
+      cursor pointer
+
+  .card-plan__icons
+    display flex
+    flex-flow row nowrap
+    margin-top 18px
+
+    .card-plan__icon
+      width 25px
+      height 25px
+
+      &_apple
+        margin-right 12px
+        background url(/img/icon_apple.png) no-repeat center
+
+      &_windows
+        background url(/img/icon_windows.png)  no-repeat center
 
 
-.layout_footer
-  display none
 
 
+.layout-plan
+  position relative
+  background-color #f6f7fa
+  padding-top 100px
+  padding-bottom 140px
 
 
+  .brand-label
+    position absolute
+    transform rotate(270deg)
+    font 12px OpenSansSemibold
+    color #b8b8b8
+    top 145px
+    left 33px
+    overflow hidden
 
+    @media screen and (max-width: 1500px)
+      display none
+
+
+  .content
+    display flex
+    flex-flow row wrap
+    justify-content center
+    align-content flex-start
+    margin-right auto
+    margin-left auto
+    max-width 1300px
+    padding-left 50px
+    padding-right 50px
+
+.layout-footer
+  padding-top 128px
+  padding-bottom 150px
+  background-color #192431
+  color #FFFFFF
+
+  .row-1
+    display none
+
+  .links
+    display flex
+    flex-flow row wrap
+    justify-content flex-start
+    align-items flex-start
+    padding-left 50px
+    padding-right 50px
+    max-width 1300px
+    margin-right auto
+    margin-left auto
+
+    .links-column
+      display flex
+      flex-flow column nowrap
+      align-items flex-start
+      padding-right 80px
+
+      @media screen and (max-width: 650px)
+        padding-right 20px
+
+      .links-column__title
+        display inline-block
+        font 13px OpenSansSemibold
+        margin-bottom 25px
+        cursor pointer
+
+      .links-column__item
+        display inline-block
+        font 13px OpenSansRegular
+        padding-bottom 2px
+        cursor pointer
+
+        &:last-of-type
+          padding-bottom 2px
 
 
 
