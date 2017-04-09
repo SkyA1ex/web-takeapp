@@ -46,6 +46,7 @@ div
 
 
 .layout_more_power
+  // display none // TODO: remove
   height 875px
   background-image url(/img/car.jpg)
   background-position center
@@ -93,6 +94,7 @@ div
 
 
 .layout_reasons
+  // display none // TODO: remove
   position relative
   background-color #82ca9c
   color #FFFFFF
@@ -224,11 +226,11 @@ div
 
 
 .layout-plan
+  // display none // TODO: remove
   position relative
   background-color #f6f7fa
   padding-top 100px
   padding-bottom 140px
-
 
   .brand-label
     position absolute
@@ -242,7 +244,6 @@ div
     @media screen and (max-width: 1500px)
       display none
 
-
   .content
     display flex
     flex-flow row wrap
@@ -254,14 +255,95 @@ div
     padding-left 50px
     padding-right 50px
 
+
+
+
+.subscription-input-form
+  position relative
+  width 300px
+
+  .subscription-input-form__email
+    display inline-block
+    width 260px
+    height 40px
+    background-color white
+    outline none
+    border none
+    color rgba(0, 0, 0, 0.8)
+    padding-left 4px
+    padding-right 4px
+    padding 10px
+    font 14px OpenSansRegular
+
+  .subscription-input-form__button-done
+    display block
+    position absolute
+    right 0px
+    top 0px
+    background url(/img/icon_button_done.png) no-repeat center, #82ca9c
+    width 40px
+    height 40px
+    cursor pointer
+
+
 .layout-footer
   padding-top 128px
   padding-bottom 150px
   background-color #192431
-  color #FFFFFF
+
+  @media screen and (max-width: 699px)
+    padding-top 50px
+    padding-bottom 50px
 
   .row-1
-    display none
+    display flex
+    flex-flow row wrap
+    justify-content flex-start
+    align-items flex-start
+    padding-left 50px
+    padding-right 50px
+    max-width 1300px
+    margin-right auto
+    margin-left auto
+
+    .get-in-touch
+      flex-grow 1
+      flex-basis 0
+      padding-right 50px
+      min-width 250px
+      max-width 550px
+
+      .get-in-touch__title
+        font 13px OpenSansSemibold
+        color #f6f7fa
+
+      .get-in-touch__description
+        font 13px OpenSansRegular
+        color #f6f7fa
+        margin-top 30px
+
+    .subscribtion
+      flex-grow 1
+      flex-basis 0
+
+      @media screen and (max-width: 699px)
+        margin-top 40px
+
+      .subscribtion__title
+        font 13px OpenSansSemibold
+        color #f6f7fa
+
+      .subscription-input-form
+        margin-top 30px
+
+      .subscribtion__no-spam
+        display inline-block
+        color #57697f
+        width 270px
+        font 12px OpenSansRegular
+        margin-top 6px
+
+
 
   .links
     display flex
@@ -273,6 +355,7 @@ div
     max-width 1300px
     margin-right auto
     margin-left auto
+    margin-top 40px
 
     .links-column
       display flex
@@ -282,16 +365,19 @@ div
 
       @media screen and (max-width: 650px)
         padding-right 20px
+        margin-right 0px
 
       .links-column__title
         display inline-block
         font 13px OpenSansSemibold
+        color #f6f7fa
         margin-bottom 25px
         cursor pointer
 
       .links-column__item
         display inline-block
         font 13px OpenSansRegular
+        color #f6f7fa
         padding-bottom 2px
         cursor pointer
 
