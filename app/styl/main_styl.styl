@@ -167,11 +167,13 @@ body
 
     .grid
       display flex
-      flex row wrap
+      flex-flow row wrap
       justify-content center
       // align-items flex-start // TODO: replace by stretch?
       // align-content flex-start
       margin-top 80px
+      padding-left 50px
+      padding-right 50px
 
       .grid-card
         flex 0 0 33.33%
@@ -179,10 +181,10 @@ body
         position relative
         padding-top 50px
         padding-bottom 40px
-        // padding-left 40px
-        // padding-right 40px
-        min-height 185px
-        background pink
+        min-height 200px
+
+        &_doubled
+          flex 0 0 66.66%
 
         &_pink
           background #F3989E
@@ -192,11 +194,11 @@ body
 
         &_pic1
           background-size cover
-          background url(/img/pic1.jpg) no-repeat
+          background url(/img/pic1.jpg) no-repeat center center
 
         &_pic2
           background-size cover
-          background url(/img/pic2.jpg) no-repeat
+          background url(/img/pic2.jpg) no-repeat center center
 
         &_green
           background #84C99D
@@ -204,23 +206,29 @@ body
         .grid-card__title
           color white
           font 30px OpenSansLight
+          padding-left 40px
+          padding-right 40px
 
         .grid-card__text
           margin-top 25px
           color white
           font 13px OpenSansRegular
+          padding-left 40px
+          padding-right 40px
+          margin-bottom 50px
 
         .grid-card__link
           position absolute
           bottom 55px
+          padding-left 40px
+          padding-right 40px
 
         .grid_card__like-icon
           font-size 4em
           content "\f000"
+          padding-left 40px
+          padding-right 40px
 
-
-        // &_doubled
-        //   flex 0 0 66.66%
 
     .details
       margin-top 100px
