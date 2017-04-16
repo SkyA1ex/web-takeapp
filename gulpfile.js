@@ -11,7 +11,8 @@ var gulp         = require('gulp'), // Подключаем Gulp
     autoprefixer = require('gulp-autoprefixer'),// Подключаем библиотеку для автоматического добавления префиксов
     liveServer   = require("live-server"), // live-server
     csslint      = require('gulp-csslint'),
-    uncss        = require('gulp-uncss');
+    uncss        = require('gulp-uncss'),
+    eslint       = require('gulp-eslint');
 
 var live_server_params = {
   port: 8082, // Set the server port. Defaults to 8080.
@@ -53,18 +54,18 @@ gulp.task('build_styles', function() {
 
   gulp.src('app/css/**/*.css')
       .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-      // .pipe(csslint())
-      // .pipe(csslint.formatter())
+      .pipe(csslint())
+      .pipe(csslint.formatter())
       .pipe(gulp.dest('build/css'));
 
   gulp.src('app/styl/**/*.styl')
       .pipe(stylus())
       .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-      // .pipe(csslint())
+      .pipe(csslint())
       // .pipe(csslint.formatter())
       .pipe(uncss({
-            html: ['app/**/*.html']
-        }))
+           html: ['app/**/*.html']
+      }))
       .pipe(gulp.dest('build/css'));
 });
 
@@ -90,6 +91,9 @@ gulp.task('build_js', function() {
   del.sync('build/js')
 
   gulp.src('app/js/**/*.js')
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError())
       .pipe(uglify())
       .pipe(gulp.dest('build/js'))
 });
