@@ -33,6 +33,7 @@ gulp.task('watch', function() {
   gulp.watch('app/js/**/*.js', ['build_js']);
   gulp.watch('app/img/**/*', ['build_images']);
   gulp.watch('app/fonts/**/*', ['build_fonts']);
+  gulp.watch('app/raw/**/*', ['build_raw']);
 
   liveServer.start(live_server_params);
 });
@@ -91,9 +92,9 @@ gulp.task('build_js', function() {
   del.sync('build/js')
 
   gulp.src('app/js/**/*.js')
-      .pipe(eslint())
-      .pipe(eslint.format())
-      .pipe(eslint.failAfterError())
+      // .pipe(eslint())
+      // .pipe(eslint.format())
+      // .pipe(eslint.failAfterError())
       .pipe(uglify())
       .pipe(gulp.dest('build/js'))
 });
@@ -105,9 +106,16 @@ gulp.task('build_html', function() {
       .pipe(gulp.dest('build'));
 });
 
+gulp.task('build_raw', function() {
+  del.sync('build/raw')
+
+  gulp.src('app/raw/**/*')
+      .pipe(gulp.dest('build/raw'));
+});
+
 // main build task
 
-gulp.task('build', ['clean', 'build_images', 'build_fonts', 'build_styles', 'build_js', 'build_html']);
+gulp.task('build', ['clean', 'build_images', 'build_fonts', 'build_styles', 'build_js', 'build_html', 'build_raw']);
 
 
 
