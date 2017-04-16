@@ -319,13 +319,32 @@ body
 
 .layout_more_power
   height 875px
-  background url(/img/car.jpg) no-repeat center, white // TODO: made black, fix gradient
 
-  .gradient
-    position absolute
-    height 100%
-    width 700px
-    background linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))
+  .background
+
+    .slider
+      display block
+      position absolute
+      height 875px
+      width 100%
+      margin-left auto
+      margin-right auto
+      margin 0
+      background url(/img/car.jpg) no-repeat center, white
+      opacity 1
+      transition opacity 1s
+
+      &_fadeOut
+        opacity 0
+
+
+    .gradient
+      display block
+      position absolute
+      height 875px
+      width 65%
+      border 0
+      background linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))
 
   .content
     display block
