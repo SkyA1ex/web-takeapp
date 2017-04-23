@@ -7,9 +7,9 @@
         <div id="menu-toggle" class="menu-toggle">Menu</div>
         <div id="menu" class="menu menu_hidden">
           <div class="menu-item">Tour</div>
-          <div class="menu-item">Customers</div>
+          <router-link to="Customers" class="menu-item">Customers</router-link>
           <div class="menu-item">New Features</div>
-          <div v-on:click="goToEducation" class="menu-item">Education</div>
+          <router-link to="Education" class="menu-item">Education</router-link>
           <div class="menu-item">Resources</div>
         </div>
         <div class="app_label">
@@ -240,6 +240,7 @@
   </body>
 </template>
 
+<!--======================================================================-->
 
 <script>
 
@@ -317,6 +318,7 @@ export default {
 }
 </script>
 
+<!--======================================================================-->
 
 <style scoped lang="stylus">
 
