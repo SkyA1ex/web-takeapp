@@ -2,7 +2,9 @@
   <div class="customers">
     <router-link to="Main" class="top-bar">Back to main page</router-link>
     <div class="content">
-      <h1>{{title}}</h1>
+      <h1 class="title">{{title}}</h1>
+      <ol class="customers">
+        <li v-for="customer of customers" class="customer-item">{{customer['.value']}}</li>
       </ol>
     </div>
   </div>
@@ -11,11 +13,20 @@
 <!-- ==================================================================== -->
 
 <script>
+import {customersRef} from '../firebase'
+
 export default {
   name: 'customers',
-  data () {
-    return {
-      title: 'Here is a complete list of our customers:'
+  data: () => ({
+    customers: [],
+    title: 'Here is a complete list of our customers:'
+  }),
+  firebase: {
+    customers: {
+      source: customersRef,
+      cancelCallback (err) {
+        console.log(err)
+      }
     }
   }
 }
@@ -37,14 +48,23 @@ export default {
 
 .content
   display block
-  margin 0 auto
-  text-align: center;
-  vertical-align: middle;
-  line-height: 90px;
+  text-align center
   padding-top 100px
   padding-bottom 100px
 
-  h1
+  .title
+    height 100px
     font 30px OpenSansRegular
+
+  .customers
+    width 200px
+    margin-left auto
+    margin-right auto
+
+    .customer-item
+      padding 15px
+      font 22px OpenSansMedium
+      text-align left
+      color black
 
 </style>

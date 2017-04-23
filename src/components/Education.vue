@@ -17,6 +17,9 @@
 <!--======================================================================-->
 
 <script>
+
+// import firebaseApi from './firebase'
+
 export default {
   name: 'education',
   data () {
@@ -24,6 +27,10 @@ export default {
       msg: 'Welcome to Your Vue.js App.!'
     }
   }
+  // ,
+  // firebase: {
+  //
+  // }
 }
 </script>
 
