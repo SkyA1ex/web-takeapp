@@ -4,8 +4,10 @@
       <div class="brand-label">TAKEAPP.COM</div>
       <div class="brand-label brand-label_perfect">PERFECT</div>
       <div class="content">
-        <div id="menu-toggle" class="menu-toggle">Menu</div>
-        <div id="menu" class="menu menu_hidden">
+        <div id="menu-toggle" class="menu-toggle"
+             v-on:click="toggleMenu">Menu</div>
+        <div id="menu" class="menu"
+             v-bind:class="{ menu_expanded: menuExpanded}">
           <div class="menu-item">Tour</div>
           <router-link to="Customers" class="menu-item">Customers</router-link>
           <div class="menu-item">New Features</div>
@@ -287,7 +289,8 @@ export default {
   data () {
     return {
       morePowerStory: '',
-      msg: 'My main.vue component'
+      msg: 'My main.vue component',
+      menuExpanded: false
     }
   },
   firebase: {
@@ -300,8 +303,11 @@ export default {
     }
   },
   methods: {
-    goToEducation: function () {
-      console.log('Go TO education')
+    toggleMenu: function () {
+      this.menuExpanded = !this.menuExpanded
+    },
+    openPlan: function (type) {
+      console.log(type)
     }
   }
 }
@@ -378,14 +384,14 @@ body
     .menu
       display flex
       flex-flow row-reverse nowrap
-      opacity 1
       transition opacity 0.2s linear
 
       @media screen and (max-width: 800px)
         flex-flow column nowrap
+        opacity 0
 
-        &_hidden
-          opacity 0
+        &_expanded
+          opacity 1
 
       .menu-item
         background-color rgba(0,0,0,.08)
