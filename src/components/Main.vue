@@ -1,5 +1,7 @@
 <template>
   <body>
+    <order-plan-popup v-bind:is-shown="isPopupShown"
+                      v-on:close-pop="closePopup"/>
     <div class="layout-header">
       <div class="brand-label">TAKEAPP.COM</div>
       <div class="brand-label brand-label_perfect">PERFECT</div>
@@ -171,7 +173,8 @@
           <div class="card-plan__description">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
           </div>
-          <div class="card-plan__buy-now">Buy now $9</div>
+          <div class="card-plan__buy-now"
+               v-on:click="showPopup">Buy now $9</div>
           <div class="card-plan__icons">
             <div class="card-plan__icon card-plan__icon_apple"></div>
             <div class="card-plan__icon card-plan__icon_windows"></div>
@@ -183,7 +186,8 @@
           <div class="card-plan__description">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
           </div>
-          <div class="card-plan__buy-now">Buy now $18</div>
+          <div class="card-plan__buy-now"
+               v-on:click="showPopup">Buy now $18</div>
           <div class="card-plan__icons">
             <div class="card-plan__icon card-plan__icon_apple"></div>
             <div class="card-plan__icon card-plan__icon_windows"></div>
@@ -283,11 +287,13 @@
 //  window.onload = init
 
 import {morePowerStoryRef} from '../firebase'
+import OrderPlanPopup from './OrderPlanPopup.vue'
 
 export default {
   name: 'main',
   data () {
     return {
+      isPopupShown: false,
       morePowerStory: '',
       msg: 'My main.vue component',
       menuExpanded: false
@@ -306,9 +312,15 @@ export default {
     toggleMenu: function () {
       this.menuExpanded = !this.menuExpanded
     },
-    openPlan: function (type) {
-      console.log(type)
+    showPopup: function () {
+      this.isPopupShown = true
+    },
+    closePopup: function () {
+      this.isPopupShown = false
     }
+  },
+  components: {
+    OrderPlanPopup
   }
 }
 </script>
