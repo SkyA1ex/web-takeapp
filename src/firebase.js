@@ -10,7 +10,6 @@ const firebaseApp = Firebase.initializeApp({
   messagingSenderId: '441211555963'
 })
 
-
 var db = firebaseApp.database()
 export const firebaseApi = db
 export const customersRef = db.ref('static/customers')
