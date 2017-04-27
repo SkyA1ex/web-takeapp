@@ -5,10 +5,10 @@
     <div class="top_bar">
       <router-link to="Main" class="back_to_main">Back to main page</router-link>
       <div class="button_login"
-           v-bind:class="{button_login__hidden: userSignedIn}"
+           v-bind:class="{button_login__hidden: isUserSignedIn}"
            v-on:click="showAuthPopup">Login</div>
       <div class="user_email"
-           v-bind:class="{user_email__hidden: !userSignedIn}"
+           v-bind:class="{user_email__hidden: !isUserSignedIn}"
            v-on:click="logout">
            {{userEmail}}
            <span class="hint">Sing Out</span>
@@ -17,14 +17,19 @@
     <div class="content">
       <h1 class="title">{{title}}</h1>
       <ol class="customers">
-        <li v-for="customer of customers" class="customer_item">{{customer['.value']}}</li>
+        <div v-for="(customer, index) in customers" class="customer_item"
+            v-bind:class="{customer_item__with_remove: isUserAdmin}">
+            {{ index + 1 }}. {{customer['.value']}}
+            <div class="customer_item_remove"
+                 v-on:click="removeCustomer(customer['.key'])">X</div>
+        </div>
       </ol>
     </div>
     <input class="add_customer_footer"
            v-on:keyup.enter="addCustomer"
            placeholder="Add new customer"
            v-model="newCustomerName"
-           v-bind:class="{add_customer_footer__hidden: !userSignedIn}"/>
+           v-bind:class="{add_customer_footer__hidden: !isUserSignedIn}"/>
   </div>
 </template>
 
@@ -38,12 +43,22 @@ export default {
   name: 'customers',
   data: () => ({
     isAuthPopupShown: false,
-    userSignedIn: false,
-    userEmail: '',
+    user: null,
     newCustomerName: '',
     customers: [],
     title: 'Here is a complete list of our customers:'
   }),
+  computed: {
+    isUserSignedIn: function () {
+      return this.user != null
+    },
+    isUserAdmin: function () {
+      return this.user != null && this.user.uid === 'MnCJC5seE9RAFiFIGdn03XMx5vX2'
+    },
+    userEmail: function () {
+      return this.user == null ? '' : this.user.email
+    }
+  },
   methods: {
     addCustomer: function () {
       if (this.newCustomerName.length > 0) {
@@ -53,6 +68,9 @@ export default {
         this.newCustomerName = ''
       }
     },
+    removeCustomer: function (id) {
+      this.$firebaseRefs.customers.child(id).remove()
+    },
     showAuthPopup: function () {
       this.isAuthPopupShown = true
     },
@@ -60,15 +78,12 @@ export default {
       this.isAuthPopupShown = false
     },
     authStateChanged: function (user) {
+      this.user = user
       if (user) {
         console.log('user is signed in:' + user.email)
         this.isAuthPopupShown = false
-        this.userSignedIn = true
-        this.userEmail = user.email
       } else {
         console.log('user is not signed in')
-        this.userSignedIn = false
-        this.userEmail = ''
       }
     },
     logout: function () {
@@ -194,6 +209,19 @@ export default {
 
       &:hover
         color #42b983
+
+      .customer_item_remove
+        display none
+        color red
+        float right
+        font 20px Arial
+
+      &__with_remove
+        &:hover
+          .customer_item_remove
+            display inline-block
+            cursor pointer
+
 
 .add_customer_footer
   background black
