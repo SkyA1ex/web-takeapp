@@ -1,9 +1,8 @@
 <template>
   <div class="education">
     <div class="top_bar">
-      <router-link to="Main" class="back_to_main">Back to main page</router-link>
+      <router-link to="/" class="back_to_main">Back to main page</router-link>
     </div>
-    <router-link to="Main" class="top-bar">Back to main page</router-link>
     <div class="content">
       <h1>Education</h1>
       <ol>
@@ -11,7 +10,7 @@
         <li>Stop thinking</li>
         <li>Leave parents' home</li>
         <li>...</li>
-        <li><a href="http://http://mmcs.sfedu.ru/" target="_blank">Go to University</a></li>
+        <li><a href="http://mmcs.sfedu.ru/" target="_blank">Go to University</a></li>
       </ol>
     </div>
   </div>
@@ -21,8 +20,6 @@
 
 <script>
 
-// import firebaseApi from './firebase'
-
 export default {
   name: 'education',
   data () {
@@ -30,10 +27,6 @@ export default {
       msg: 'Welcome to Your Vue.js App.!'
     }
   }
-  // ,
-  // firebase: {
-  //
-  // }
 }
 </script>
 
@@ -83,5 +76,6 @@ export default {
 
   a
     color #42b983
+    cursor pointer
 
 </style>

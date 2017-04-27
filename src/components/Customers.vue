@@ -3,7 +3,7 @@
     <auth-popup v-bind:is-shown="isAuthPopupShown"
                 v-on:close-pop="closeAuthPopup"/>
     <div class="top_bar">
-      <router-link to="Main" class="back_to_main">Back to main page</router-link>
+      <router-link to="/" class="back_to_main">Back to main page</router-link>
       <div class="button_login"
            v-bind:class="{button_login__hidden: isUserSignedIn}"
            v-on:click="showAuthPopup">Login</div>
