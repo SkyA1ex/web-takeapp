@@ -1,5 +1,8 @@
 <template>
   <div class="education">
+    <div class="top_bar">
+      <router-link to="Main" class="back_to_main">Back to main page</router-link>
+    </div>
     <router-link to="Main" class="top-bar">Back to main page</router-link>
     <div class="content">
       <h1>Education</h1>
@@ -38,15 +41,27 @@ export default {
 
 <style scoped lang="stylus">
 
-.top-bar
+.top_bar
   display block
-  padding 15px
-  font 20px OpenSansRegular
-  background rgba(1, 1, 1, 0.09)
-  color #42B983
+  position fixed
+  width 100%
+  top 0px
+  padding-top 15px
+  padding-bottom 15px
+  background black
+  z-index 3
 
-  &:hover
-    background rgba(1, 1, 1, 0.13)
+  .back_to_main
+    font 20px OpenSansRegular
+    color #42B983
+    text-decoration none
+    padding-left 15px
+    padding-right 15px
+    color white
+
+    &:hover
+      cursor pointer
+      color #42B983
 
 .content
   display block

@@ -8,6 +8,7 @@
              v-bind:class="{input_form__not_valid: !emailInputValid}"
              v-model="email"/>
       <input class="input_form" placeholder="Password"
+             type="password"
              v-bind:class="{input_form__not_valid: !passInputValid}"
              v-model="password"/>
       <div class="error_message">{{errorMessage}}</div>

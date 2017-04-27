@@ -193,7 +193,7 @@ export default {
       text-align left
 
       &:hover
-        background rgba(0, 0, 0, 0.05)
+        color #42b983
 
 .add_customer_footer
   background black
