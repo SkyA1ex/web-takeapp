@@ -4,8 +4,13 @@
     <div class="overlay"
          v-on:click="close"></div>
     <div class="content">
-      <input class="input_form" placeholder="Email Address" v-model="email"/>
-      <input class="input_form" placeholder="Password" v-model="password"/>
+      <input class="input_form" placeholder="Email Address"
+             v-bind:class="{input_form__not_valid: !emailInputValid}"
+             v-model="email"/>
+      <input class="input_form" placeholder="Password"
+             v-bind:class="{input_form__not_valid: !passInputValid}"
+             v-model="password"/>
+      <div class="error_message">{{errorMessage}}</div>
       <button class="button_auth"
               v-bind:class="{button_auth__valid: allInputValid}"
               v-on:click="auth">Login/SignUp</button>
@@ -23,16 +28,27 @@ export default {
     'isShown'
   ],
   data: () => ({
-    email: 'skyalexx@gmail.com',
-    password: '',
-    allInputValid: true
+    email: '',
+    errorMessage: '',
+    password: ''
   }),
   methods: {
     close: function () {
       this.$emit('close-pop')
     },
     auth: function () {
-      console.log('auth')
+      // TODO:
+    }
+  },
+  computed: {
+    emailInputValid: function () {
+      return /^.+@.+\..+$/.test(this.email)
+    },
+    passInputValid: function () {
+      return this.password.length >= 6
+    },
+    allInputValid: function () {
+      return this.emailInputValid && this.passInputValid
     }
   }
 }
@@ -70,11 +86,71 @@ export default {
     top 50%
     left 50%
     transform translate(-50%, -50%)
-    padding 20px
+    padding 15px
     border-radius 5px
-    padding-bottom 100px
+    padding-bottom 80px
     width 50%
     box-shadow 0 0 50px rgba(1, 1, 1, 0.3)
     color rgba(0, 0, 0, 0.75)
+
+    .error_message
+      min-height 20px
+      color red
+      font 16px OpenSansLight
+      width 100px
+      margin 0 auto
+      margin-top 15px
+
+
+    .input_form
+      display block
+      color black
+      font 16px OpenSansLight
+      border 0px
+      outline none
+      border 1px solid rgba(0, 0, 0, 0.2)
+      border-radius 3px
+      padding-top 6px
+      padding-bottom 6px
+      padding-left 8px
+      padding-right 8px
+      margin-left auto
+      margin-right auto
+      margin-top 20px
+      width 250px
+
+      &:focus
+        border 1px solid rgba(0, 0, 0, 0.2)
+        box-shadow 0 0 5px rgba(1, 1, 1, 0.15)
+        color #42b983
+
+      &__not_valid
+        color red
+
+        &:focus
+          color red
+
+    .button_auth
+        background rgba(1,1,1,0.3)
+        color white
+        font 15px OpenSansRegular
+        position fixed
+        bottom 15px
+        left 50%
+        transform translate(-50%,0%)
+        padding-left 15px
+        padding-right 15px
+        padding-top 10px
+        padding-bottom 10px
+        margin 0 auto
+        border-radius 2px
+        border 0px solid rgba(0, 0, 0, 1)
+
+        &__valid
+          background #42b983
+
+          &:hover
+            box-shadow 0 0 5px rgba(0, 0, 0, 0.2)
+            cursor pointer
 
 </style>
