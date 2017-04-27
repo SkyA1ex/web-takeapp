@@ -13,7 +13,7 @@
       <div class="error_message">{{errorMessage}}</div>
       <button class="button_auth"
               v-bind:class="{button_auth__valid: allInputValid}"
-              v-on:click="auth">Login/SignUp</button>
+              v-on:click="signIn">Login/SignUp</button>
     </div>
   </div>
 </template>
@@ -21,6 +21,7 @@
 <!-- ==================================================================== -->
 
 <script>
+import {auth} from '../firebase'
 
 export default {
   name: 'AuthPopup',
@@ -36,8 +37,28 @@ export default {
     close: function () {
       this.$emit('close-pop')
     },
-    auth: function () {
-      // TODO:
+    signIn: function () {
+      auth.createUserWithEmailAndPassword(this.email, this.password)
+          .then(this.onSignedIn)
+          .catch(this.onAuthError)
+    },
+    login: function () {
+      auth.signInWithEmailAndPassword(this.email, this.password)
+          .then(this.onSignedIn)
+          .catch(this.onAuthError)
+    },
+    onSignedIn: function () {
+      this.email = ''
+      this.password = ''
+      this.errorMessage = ''
+    },
+    onAuthError: function (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        this.login()
+        return
+      }
+      console.log(error)
+      this.errorMessage = error.message
     }
   },
   computed: {
@@ -96,8 +117,8 @@ export default {
     .error_message
       min-height 20px
       color red
-      font 16px OpenSansLight
-      width 100px
+      font 12px OpenSansLight
+      width 200px
       margin 0 auto
       margin-top 15px
 
