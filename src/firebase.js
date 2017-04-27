@@ -19,3 +19,5 @@ export const firebaseApi = db
 export const customersRef = db.ref('static/customers')
 
 export const morePowerStoryRef = db.ref('static/more_power_story')
+
+export const auth = firebaseApp.auth()
